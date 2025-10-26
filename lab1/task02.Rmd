@@ -1,0 +1,33 @@
+a)
+```{r}
+data_frame <- read.table("var4.txt")
+X <- data_frame$V1
+print(X)
+length(X)
+```
+
+b) Wilson method for confidence interval, theta_est = mean(X)
+```{r}
+a = 1 - 0.84
+z <- qnorm(1 - a / 2)
+n <- length(X)
+est = mean(X)
+left <- (n*est + (z^2) / 2) / (n + z^2) - z * sqrt(n*est*(1-est) + (z^2)/4)/(n+z^2)
+right <- (n*est + (z^2) / 2) / (n + z^2) + z * sqrt(n*est*(1-est) + (z^2)/4)/(n+z^2)
+print(c(left, right))
+```
+
+с)
+```{r}
+conf_int <- function(X, gamma) {
+  a = 1 - gamma
+  z <- qnorm(1 - a / 2)
+  n <- length(X)
+  est = mean(X)
+  left <- (n*est + (z^2) / 2) / (n + z^2) - z * sqrt(n*est*(1-est) + (z^2)/4)/(n+z^2)
+  right <- (n*est + (z^2) / 2) / (n + z^2) + z * sqrt(n*est*(1-est) + (z^2)/4)/(n+z^2)
+  return(c(left, right))
+}
+print(conf_int(X, 0.84))
+```
+
