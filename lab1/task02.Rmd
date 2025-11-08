@@ -1,3 +1,8 @@
+---
+output:
+  html_document: default
+  pdf_document: default
+---
 a)
 ```{r}
 data_frame <- read.table("var4.txt")
